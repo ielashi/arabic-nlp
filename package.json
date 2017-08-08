@@ -14,7 +14,7 @@
     "tashkeel",
     "tatweel"
   ],
-  "author": "Islam El-Ashi <ielashi@gmail.com>",
+  "author": "Islam El-Ashi <ielashi@gmail.com> (http://imake.ninja/)",
   "license": "ISC",
   "devDependencies": {
     "mocha": "^3.5.0"
