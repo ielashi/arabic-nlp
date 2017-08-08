@@ -1,5 +1,5 @@
 {
-  "name": "arabic_nlp",
+  "name": "arabic-nlp",
   "version": "0.0.1",
   "description": "Arabic NLP",
   "main": "index.js",
