@@ -33,13 +33,16 @@ const TASHKEEL = [
 
 const TASHKEEL_REGEX = new RegExp("[" + TASHKEEL.join() + "]", 'g');
 const TATWEEL_REGEX = /ـ/g;
+const ALIF = /[أإآ]/g;
+const YA = /[ىي]/g;
+const TA = /[ة]/g;
 
 /**
  * Remove all tashkeel from text.
  *
  * e.g.
- *   Input: "`أَنا الَّذي نَظَرَ الأَعمى إِلى أَدَبي"
- *   Output: "`أنا الذي نظر الأعمى إلى أدبي"
+ *   Input: "أَنا الَّذي نَظَرَ الأَعمى إِلى أَدَبي"
+ *   Output: "أنا الذي نظر الأعمى إلى أدبي"
  */
 function remove_tashkeel(text) {
   return text.replace(TASHKEEL_REGEX, '');
@@ -56,7 +59,26 @@ function remove_tatweel(text) {
   return text.replace(TATWEEL_REGEX, '');
 }
 
+/**
+ * Sanitize Arabic text.
+ *
+ * Sanitization removes all tashkeel, tatweel, and standardises alif and ya'
+ *
+ * e.g.
+ *   Input: "أنا اسمى آدم علي إدريس حمزة"
+ *   Output: "انا اسمي ادم علي ادريس حمزه"
+ */
+function sanitize(text) {
+  text = text.replace(ALIF, 'ا').replace(YA, 'ي').replace(TA, 'ه');
+
+  text = remove_tatweel(text)
+  text = remove_tashkeel(text)
+
+  return text;
+}
+
 module.exports = {
   remove_tashkeel,
   remove_tatweel,
+  sanitize
 }
